@@ -1,0 +1,23 @@
+lxErrorLogger:
+  options:
+    symfony:
+      form: false
+  actAs:
+    Timestampable: ~
+  columns:
+    id:             { type: integer(4), autoincrement: true, unsigned: true, primary: true }
+    environment:    { type: string(100),  default: NULL }
+    type:           { type: string(100),  default: NULL }
+    url:            { type: string,       default: NULL }
+    code:           { type: integer,      default: NULL }
+    class:          { type: string(255),  default: NULL }
+    message:        { type: string,       default: NULL }
+    file:           { type: string,       default: NULL }
+    line:           { type: integer,      default: NULL }
+    module:         { type: string(100),  default: NULL }
+    action:         { type: string(100),  default: NULL }
+    trace:          { type: string,       default: NULL }
+    user_agent:     { type: string,       default: NULL }
+    server:         { type: string,       default: NULL }
+    session:        { type: string,       default: NULL }
+    similar_error:  { type: integer(4),   default: NULL, unsigned: true }

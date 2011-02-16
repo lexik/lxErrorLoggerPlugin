@@ -1,0 +1,49 @@
+all:
+  lx_error_logger_plugin:
+    enabled:              false                                  # enable/disable the error logger
+    php_error_reporting:  <?php echo (E_ALL | E_STRICT)."\n" ?>  # php errors to repport
+    reserve_memory:       false                                  # reserve some memory to be able to log memory limit fatal errors.
+    service_class:        lxErrorLoggerService                   # error logger service class
+    error_class:          lxError                                # error class
+    error_html_template:  %SF_PLUGINS_DIR%/lxErrorLoggerPlugin/data/lxErrorHtml.php # template file used to render an error as html.
+    rss:
+      token:              695da52ee926897d352ad0c05721a8bc       # token to access the rss feed provided by lxErrorNotifierRss module, use your own token.
+      items:              20                                     # number of items in the rss feed provided by lxErrorNotifierRss module
+    notifier:
+      db:
+        enabled:          false                                  # enable/disable database notifier
+        class:            lxErrorNotifierDb                      # database notifier class
+        options:
+          similar_error:  true                                   # look for similar error when an error is notified
+          dsn:            ~                                      # use a different DB to log errors
+          username:       ~                                      # username for the DB
+          password:       ~                                      # password for the DB
+          driver_options: {}                                     # PDO driver options
+      xml:
+        enabled:          false                                  # enable/disable notifier xml
+        class:            lxErrorNotifierXml                     # xml notifier class
+        options:
+          file_path:      %SF_DATA_DIR%/lxErrorLoggerPlugin      # xml file path
+          file_name:      errors.xml                             # xml file name
+          similar_error:  true                                   # look for similar error when an error is notified
+      mail:
+        enabled:          false                                  # enable/disable mail notifier
+        class:            lxErrorNotifierMail                    # email notifier class
+        options:
+          to:             mail@example.com                       # or several emails > to: [mail@example.com, mail2@exmple.com]
+          subject:        A new error occured on your website    # the email subject
+          always_send:    true                                   # always send an email even if db or xml notifiers detect the error as similar
+      hoptoad:
+        enabled:          false                                  # enable/disable Hoptoad notifier
+        class:            lxErrorNotifierHoptoad                 # Hoptoad notifier class
+        options:
+          apiKey:         8a5da52ed126447d359e70c05721a8aa       # your Hoptoad api key
+          timeout:        2                                      # time out value for curl request to Hoptoad
+          log_response:   false                                  # log Hoptoad response
+      logFile:
+        enabled:          false                                  # enable/disable log file notifier
+        class:            lxErrorNotifierLogFile                 # log file notifier class
+        options:
+          file_path:      %SF_LOG_DIR%                           # log file path
+          file_name:      lxErrorLoggerPlugin.log                # log file name
+          line_pattern:   "%created_at% %separator% %environment% %separator% %type% %separator% %message% (%file%:%line%)" # log line pattern
