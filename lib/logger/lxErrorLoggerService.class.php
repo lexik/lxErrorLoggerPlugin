@@ -222,7 +222,7 @@ class lxErrorLoggerService
   {
     if (null === $this->context)
     {
-      return sfContext::hasInstance() ? sfContext::getInstance() : false;
+      $this->context = sfContext::hasInstance() ? sfContext::getInstance() : false;
     }
 
     return $this->context;
@@ -235,7 +235,7 @@ class lxErrorLoggerService
    */
   public function getRequest()
   {
-    return (false !== $this->getContext()) ? $this->context->getRequest() : false;
+    return (false !== $this->getContext()) ? $this->getContext()->getRequest() : false;
   }
 
   /**
