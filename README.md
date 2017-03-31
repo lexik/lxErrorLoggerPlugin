@@ -3,6 +3,9 @@ lxErrorLoggerPlugin
 
 lxErrorLoggerPlugin allow you to log PHP errors and exceptions that occur on a Symfony project into various format.
 
+This thing is deprecated
+=========================
+
 ![Project Status](http://stillmaintained.com/lexik/lxErrorLoggerPlugin.png)
 
 Available error notifier
